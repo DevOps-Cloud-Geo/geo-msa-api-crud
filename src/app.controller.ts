@@ -16,7 +16,7 @@ export class AppController {
 
   @Get(':id')
   getHello(@Param('id') id: string, @Query('status') status: string): string {
-    const data: Data = { name: 'Geo', age: 20 };
+    const data: Data = { name: 'Geo', age: +id };
     const Params = {
       status: status,
     };
@@ -30,7 +30,7 @@ export class AppController {
     @Headers('trackingid') headers: any,
   ): Promise<Account> {
     const { trackingid } = headers;
-
+    console.log(payload, trackingid);
     const result = await this.appService.createAccount(payload);
     console.log(result, trackingid);
     return result;
